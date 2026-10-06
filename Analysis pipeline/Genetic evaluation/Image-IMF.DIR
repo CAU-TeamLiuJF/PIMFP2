@@ -1,0 +1,30 @@
+$COMMENT
+Within-breed single-trait IMF animal model
+
+$ANALYSE 1 1 0 0
+
+$DATA ASCII (3,2,-999) dmu_imf.txt
+
+$VARIABLE
+ID sex ys
+weight imf
+
+$MODEL
+1
+0
+2 0 2 2 1
+1 1
+1 1
+0
+
+$VAR_STR 1 PED 2 ASCII dmu_pedigree.txt
+
+$RESIDUALS ASCII
+
+$DMUAI
+10 Emstep       Number of steps before full weight on EM in imet = 2
+1.0d-7 Conv_ndelta  Convergence criteria for norm of the update vector
+1.0d-6 Conv_gnorm   Convergence criteria for norm of the gradient vector (AI)
+1 Printout     1 -> Solution vector is printed/written to file SOL
+0 Fspopt      Time (0) or memory (1) optimised FSPAK
+0 P_neval     Restart an analysis from evaluation p_neval.
