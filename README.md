@@ -1,2 +1,9 @@
 # PIMFP2
-This repository provides the code and analysis pipelines used in this study, including two main components: (1) code related to the PIMFP2 model, including model training, inference, and performance evaluation; and (2) analysis pipelines for intramuscular fat and fatty acid traits, including GWAS, genetic evaluation, and visualization.
+
+This repository provides the code and analysis pipelines used in this study, including the source code for the PIMFP2 web tool, which supports multiple input configurations, including unimodal and multimodal inputs as well as single-view and multi-view inputs, together with analysis pipelines for intramuscular fat (IMF) and fatty acid (FA) traits, including genome-wide association studies (GWAS), genetic evaluation, and visualization.
+
+You are welcome to directly use the PIMFP2 web platform at [https://www.pimfp.cn/](https://www.pimfp.cn/).
+
+**For review purposes, a test account has been provided for the PIMFP2 platform. Both the username and password are `testuser@pimfp.cn`.**
+
+![Graphical Abstract](Graphical_Abstract.png)
