@@ -1,0 +1,101 @@
+profile = 'dev'
+
+[flask]
+SESSION_COOKIE_SECURE = false
+SESSION_COOKIE_HTTPONLY = true
+SESSION_COOKIE_SAMESITE = 'Lax'
+
+[app]
+upload_id_burst_per_hour = 128
+max_total_chunks = 1024
+storage_dir = "/Users/liuxiangyu/Projects/pimfp/storage/"
+vip_max_prediction = 2048
+basic_max_prediction = 512
+vip_predictor = 2
+basic_predictor = 1
+vip_max_data_size = 536870912 # 512MB
+basic_max_data_size = 134217728 # 128MB
+vip_max_image_count = 500
+basic_max_image_count = 5000
+
+
+[redis]
+host = "localhost"
+port = 6379
+db = 0
+socket_timeout = 5.0
+socket_connect_timeout = 5.0
+max_connections = 20
+decode_responses = false
+
+
+[db]
+database = "pimfp"
+host = "localhost"
+port = 3306
+user = "galaxyzen"
+charset = "utf8mb4"
+collation = "utf8mb4_0900_ai_ci"
+init_command = "SET SESSION time_zone='+00:00'"
+max_connections = 50
+stale_timeout = 300
+timeout = 10
+
+
+[smtp]
+host = "smtp.qq.com"
+port = 465
+user = "1978381093@qq.com"
+from_addr = "1978381093@qq.com"
+realname = "PIMFP"
+
+
+[logging]
+version = 1
+disable_existing_loggers = false
+
+[logging.formatters.standard]
+format = "%(asctime)s.%(msecs)03d [pid:%(process)d][%(name)s][%(filename)s:%(lineno)d][func:%(funcName)s][session_id:%(session_id)s][request_id:%(request_id)s][trace_id:%(trace_id)s][%(levelname)s][%(endpoint)s] %(message)s"
+datefmt = "%Y-%m-%d %H:%M:%S"
+
+[logging.filters.request_context_filter]
+# 还原为字符串路径
+"()" = "pimfp.logger.RequestContextFilter"
+
+[logging.handlers.null_handler]
+class = "logging.NullHandler"
+
+[logging.handlers.console_handler]
+class = "logging.StreamHandler"
+stream = "ext://sys.stdout"
+level = "NOTSET"
+formatter = "standard"
+filters = ["request_context_filter"]
+
+# flask logger name is same as the app name
+# which "usually" is the __name__ of the app module
+# what an extremely stupid design!
+[logging.loggers.pimfp]
+handlers = ["console_handler"]
+level = "DEBUG"
+propagate = false
+
+[logging.loggers.werkzeug]
+handlers = ["null_handler"]
+level = "CRITICAL"
+propagate = false
+
+[logging.loggers.peewee]
+handlers = ["console_handler"]
+level = "DEBUG"
+propagate = false
+
+[logging.loggers."peewee.sql"]
+handlers = ["console_handler"]
+level = "DEBUG"
+propagate = false
+
+[logging.loggers."peewee.pool"]
+handlers = ["console_handler"]
+level = "DEBUG"
+propagate = false

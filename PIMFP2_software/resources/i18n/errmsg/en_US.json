@@ -1,0 +1,17 @@
+{
+  "COMMONERROR0001": "Unknown error",
+  "COMMONERROR0003": "Parameter error",
+  "AUTHERROR0000": "Not logged in",
+  "AUTHERROR0001": "Login timeout",
+  "AUTHERROR0002": "Account has logged in on another device.",
+  "AUTHERROR0003": "Your login session is no longer valid. Please try to login again.",
+  "AUTHERROR0004": "Sending registration verification codes too frequently. Please try again later.",
+  "AUTHERROR0005": "The email has been registered.",
+  "AUTHERROR0007": "Sending logging verification codes too frequently. Please try again later.",
+  "AUTHERROR0008": "Account Restricted",
+  "AUTHERROR0009": "Incorrect email or password",
+  "AUTHERROR0012": "Sending verification codes too frequently. Please try again later.",
+  "AUTHERROR0013": "For your security, the password reset session has been expired. Please start over.",
+  "AUTHERROR0015": "The verification code is incorrect.",
+  "PREDICTIONERROR0000": "For lean-type pigs, only backfat thickness images (the most common) are currently supported; models with loin eye area images will be updated in the future."
+}

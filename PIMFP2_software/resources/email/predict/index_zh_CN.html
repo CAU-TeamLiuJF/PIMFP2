@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>模型预测结果</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 20px 0;
+      background-color: #f5f5f5;
+      line-height: 1.4;
+      color: #333;
+      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      font-size: 16px;
+    }
+
+    .email-container {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+    }
+
+    .text-header {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 25px 10px;
+      border-bottom: 3px solid #e74c3c;
+      line-height: 1.2;
+    }
+
+    .text-header h1 {
+      font-size: 36px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin: 0 0 8px 0;
+      font-family: "Console", Courier, monospace;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .text-header .subtitle {
+      font-size: 14px;
+      color: #bdc3c7;
+      letter-spacing: 1px;
+    }
+
+    .email-content {
+      padding: 20px 15px;
+      width: 100%;
+    }
+
+    .greeting {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    .intro-text {
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .task-summary {
+      margin: 25px auto;
+      padding: 15px 20px;
+      background-color: #f8f9fa;
+      border: 2px solid #3498db;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .task-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed #bdc3c7;
+    }
+
+    .task-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-label {
+      font-size: 15px;
+      color: #7f8c8d;
+      flex: 1;
+    }
+
+    .item-value {
+      font-size: 16px;
+      font-weight: bold;
+      color: #2c3e50;
+      font-family: "Console", Courier, monospace;
+      flex: 1;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .instructions {
+      background-color: #fff8e1;
+      border-left: 4px solid #f1c40f;
+      padding: 15px;
+      margin-top: 25px;
+      width: 100%;
+    }
+
+    .instructions h3 {
+      color: #d35400;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .instructions ul {
+      padding-left: 20px;
+    }
+
+    .instructions li {
+      margin-bottom: 6px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .email-footer {
+      padding: 15px 10px;
+      text-align: center;
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .company-info {
+      margin-top: 10px;
+      color: #95a5a6;
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: 601px) {
+      .email-container {
+        max-width: 600px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .text-header {
+        padding: 35px 20px;
+      }
+
+      .text-header h1 {
+        font-size: 48px;
+        letter-spacing: 8px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .text-header .subtitle {
+        font-size: 16px;
+        letter-spacing: 2px;
+      }
+
+      .email-content {
+        padding: 30px;
+      }
+
+      .greeting {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .task-summary {
+        padding: 20px 25px;
+      }
+
+      .item-label {
+        font-size: 16px;
+      }
+
+      .instructions {
+        padding: 20px;
+      }
+
+      .instructions h3 {
+        font-size: 18px;
+      }
+
+      .instructions li {
+        font-size: 16px;
+      }
+
+      .email-footer {
+        padding: 20px;
+        font-size: 14px;
+      }
+    }
+
+    @media screen and (max-width: 600px) and (min-width: 481px) {
+      .email-container {
+        max-width: 95%;
+        margin: 0 auto;
+      }
+
+      .text-header h1 {
+        font-size: 42px;
+        letter-spacing: 6px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .email-container {
+        min-width: 200px;
+        border: none;
+        border-radius: 0;
+      }
+
+      .text-header {
+        padding: 20px 8px;
+      }
+
+      .text-header h1 {
+        font-size: 28px;
+        letter-spacing: 3px;
+      }
+
+      .text-header .subtitle {
+        font-size: 13px;
+        letter-spacing: 0.5px;
+      }
+
+      .email-content {
+        padding: 15px 10px;
+      }
+
+      .greeting {
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+
+      .intro-text {
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+
+      .task-summary {
+        margin: 20px auto;
+        padding: 15px 12px;
+      }
+
+      .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .item-label {
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .item-value {
+        font-size: 15px;
+        text-align: left;
+      }
+
+      .instructions {
+        padding: 12px;
+        margin-top: 20px;
+      }
+
+      .instructions h3 {
+        font-size: 15px;
+      }
+
+      .instructions li {
+        font-size: 13px;
+      }
+
+      .email-footer {
+        padding: 12px 8px;
+        font-size: 12px;
+      }
+
+      .company-info {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="email-container">
+  <div class="text-header">
+    <h1>PIMFP</h1>
+    <div class="subtitle">模型预测结果</div>
+  </div>
+
+  <div class="email-content">
+    <p class="greeting">尊敬的用户：</p>
+
+    <p class="intro-text">
+      您提交的模型预测任务已成功处理。具体结果已在此邮件的附件中提供。您可以在下方查看任务详情：
+    </p>
+
+    <div class="task-summary">
+      <div class="task-item">
+        <span class="item-label">流水号</span>
+        <span class="item-value">{{ flow_no|default("") }}</span>
+      </div>
+      <div class="task-item">
+        <span class="item-label">预测类型</span>
+        <span class="item-value">{{ prediction_type|default("") }}</span>
+      </div>
+      <div class="task-item">
+        <span class="item-label">超声设备</span>
+        <span class="item-value">{{ ultrasound|default("") }}</span>
+      </div>
+      <div class="task-item">
+        <span class="item-label">猪只类型</span>
+        <span class="item-value">{{ pig_type|default("") }}</span>
+      </div>
+      <div class="task-item">
+        <span class="item-label">提交时间</span>
+        <span class="item-value">{{ submit_at|default("") }}</span>
+      </div>
+    </div>
+
+    <p class="intro-text">
+      请下载并查看附件文件以获取完整的详细报告。
+    </p>
+
+    <div class="instructions">
+      <h3>注意事项</h3>
+      <ul>
+        <li>
+          上述结果基于您提供的数据生成。请在进一步使用前核实其准确性。
+        </li>
+        <li>
+          如果您无法打开附件，请联系我们。
+        </li>
+        <li>
+          这是一封由系统自动生成的通知邮件，请勿直接回复。
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="email-footer">
+    <p>
+      本邮件由 PIMFP 系统自动发送，请勿回复。
+    </p>
+    <p class="company-info">
+      © {{ rights_year|default("2026") }} PIMFP 模型预测服务。保留所有权利。
+    </p>
+  </div>
+</div>
+</body>
+</html>

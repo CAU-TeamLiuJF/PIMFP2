@@ -1,0 +1,21 @@
+Dear User, Your submitted task has been processed successfully.
+The specific results are provided in the attachments of this email. You can find the task details below:
+
+----
+Flow No. : {{ flow_no|default("") }}
+Prediction Type : {{ prediction_type|default("") }}
+Ultrasound Equipment : {{ ultrasound|default("") }}
+Pig Type : {{ pig_type|default("") }}
+Submit Time : {{ submit_at|default("") }}
+
+----
+Notes:
+- The result above is based on the data you provided. Please verify its accuracy before further use
+- If you have trouble opening the attachments, please contact our.
+- This is an automated notification message; please do not reply to this email directly.
+
+----
+This email was sent automatically by the PIMFP system. Please do not reply.
+
+----
+© {{ rights_year|default("2026") }} PIMFP Model Prediction Service. All rights reserved.

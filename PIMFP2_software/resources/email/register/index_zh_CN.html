@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>注册验证码</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 20px 0;
+      background-color: #f5f5f5;
+      line-height: 1.4;
+      color: #333;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+
+    .email-container {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+    }
+
+    .text-header {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 25px 10px;
+      border-bottom: 3px solid #e74c3c;
+      line-height: 1.2;
+    }
+
+    .text-header h1 {
+      font-size: 36px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin: 0 0 8px 0;
+      font-family: "Console", Courier, monospace;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .text-header .subtitle {
+      font-size: 14px;
+      color: #bdc3c7;
+      letter-spacing: 1px;
+      font-family: "Console", Courier, monospace;
+    }
+
+    .email-content {
+      padding: 20px 15px;
+      width: 100%;
+    }
+
+    .greeting {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    .intro-text {
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .verification-code {
+      text-align: center;
+      margin: 25px auto;
+      padding: 20px 10px;
+      background-color: #f8f9fa;
+      border: 2px solid #3498db;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .code-label {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #7f8c8d;
+    }
+
+    .code {
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 6px;
+      color: #e74c3c;
+      padding: 12px 8px;
+      background-color: #fff;
+      border-radius: 5px;
+      font-family: "Console", Courier, monospace;
+      word-break: break-all;
+    }
+
+    .instructions {
+      background-color: #fff8e1;
+      border-left: 4px solid #f1c40f;
+      padding: 15px;
+      margin-top: 25px;
+      width: 100%;
+    }
+
+    .instructions h3 {
+      color: #d35400;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .instructions ul {
+      padding-left: 20px;
+    }
+
+    .instructions li {
+      margin-bottom: 6px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .email-footer {
+      padding: 15px 10px;
+      text-align: center;
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .company-info {
+      margin-top: 10px;
+      color: #95a5a6;
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: 601px) {
+      .email-container {
+        max-width: 600px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .text-header {
+        padding: 35px 20px;
+      }
+
+      .text-header h1 {
+        font-size: 48px;
+        letter-spacing: 8px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .text-header .subtitle {
+        font-size: 16px;
+        letter-spacing: 2px;
+      }
+
+      .email-content {
+        padding: 30px;
+      }
+
+      .greeting {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .verification-code {
+        padding: 25px;
+        max-width: 500px;
+      }
+
+      .code {
+        font-size: 42px;
+        letter-spacing: 10px;
+        padding: 15px;
+      }
+
+      .instructions {
+        padding: 20px;
+      }
+
+      .instructions h3 {
+        font-size: 18px;
+      }
+
+      .instructions li {
+        font-size: 16px;
+      }
+
+      .email-footer {
+        padding: 20px;
+        font-size: 14px;
+      }
+
+      .footer-ascii {
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 600px) and (min-width: 481px) {
+      .email-container {
+        max-width: 95%;
+        margin: 0 auto;
+      }
+
+      .text-header h1 {
+        font-size: 42px;
+        letter-spacing: 6px;
+      }
+
+      .code {
+        font-size: 36px;
+        letter-spacing: 8px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .email-container {
+        min-width: 200px;
+        border: none;
+        border-radius: 0;
+      }
+
+      .text-header {
+        padding: 20px 8px;
+      }
+
+      .text-header h1 {
+        font-size: 28px;
+        letter-spacing: 3px;
+      }
+
+      .text-header .subtitle {
+        font-size: 13px;
+        letter-spacing: 0.5px;
+      }
+
+      .email-content {
+        padding: 15px 10px;
+      }
+
+      .greeting {
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+
+      .intro-text {
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+
+      .verification-code {
+        margin: 20px auto;
+        padding: 15px 8px;
+        max-width: 100%;
+      }
+
+      .code-label {
+        font-size: 15px;
+      }
+
+      .code {
+        font-size: 26px;
+        letter-spacing: 4px;
+        padding: 10px 6px;
+        max-width: 100%;
+      }
+
+      .instructions {
+        padding: 12px;
+        margin-top: 20px;
+      }
+
+      .instructions h3 {
+        font-size: 15px;
+      }
+
+      .instructions li {
+        font-size: 13px;
+      }
+
+      .email-footer {
+        padding: 12px 8px;
+        font-size: 12px;
+      }
+
+      .company-info {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="email-container">
+  <div class="text-header">
+    <h1>PIMFP</h1>
+    <div class="subtitle">安全验证</div>
+  </div>
+
+  <div class="email-content">
+    <p class="greeting">尊敬的用户，您好！</p>
+
+    <p class="intro-text">
+      您正在使用邮箱注册，请使用以下验证码完成操作。此验证码由 PIMFP
+      安全系统生成，仅用于邮箱验证。
+    </p>
+
+    <div class="verification-code">
+      <div class="code-label">您的验证码是</div>
+      <div class="code">{{ verify_code|default("") }}</div>
+    </div>
+
+    <p class="intro-text">
+      此验证码将在 {{ expire|default("5") }}
+      分钟后失效。
+    </p>
+
+    <div class="instructions">
+      <h3>安全提示</h3>
+      <ul>
+        <li>请不要将验证码透露给任何人，包括我们的客服人员</li>
+        <li>此验证码仅用于邮箱验证，无需回复此邮件</li>
+        <li>如果您没有请求此验证码，请忽略此邮件或联系客服</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="email-footer">
+    <p>此邮件由 PIMFP 系统自动发送，请勿直接回复</p>
+    <p class="company-info">
+      © {{ rights_year|default("2026") }} PIMFP 安全验证服务 保留所有权利
+    </p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+Dear User, We regret to inform you that your submitted task could **not** be processed successfully due to an error.
+You can find your task details below:
+
+----
+Flow No. : {{ flow_no|default("") }}
+Prediction Type : {{ prediction_type|default("") }}
+Ultrasound Equipment : {{ ultrasound|default("") }}
+Pig Type : {{ pig_type|default("") }}
+Submit Time : {{ submit_at|default("") }}
+
+----
+Notes:
+- Please double-check the uploaded data or images to ensure they meet the system's format requirements.
+- If you believe your data is correct and this is a system error, please contact us and provide your **Flow No**.
+- This is an automated notification message; please do not reply to this email directly.
+
+----
+This email was sent automatically by the PIMFP system. Please do not reply.
+
+----
+© {{ rights_year|default("2026") }} PIMFP Model Prediction Service. All rights reserved.

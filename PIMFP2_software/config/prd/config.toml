@@ -1,0 +1,101 @@
+profile = 'prd'
+
+[flask]
+SESSION_COOKIE_SECURE = true
+SESSION_COOKIE_HTTPONLY = true
+SESSION_COOKIE_SAMESITE = 'Lax'
+
+[app]
+upload_id_burst_per_hour = 128
+max_total_chunks = 1024
+storage_dir = "/Workspace/liuzhen/pimfp/storage/"
+vip_max_prediction = 2048
+basic_max_prediction = 512
+vip_predictor = 2
+basic_predictor = 1
+vip_max_data_size = 536870912 # 512MB
+basic_max_data_size = 134217728 # 128MB
+vip_max_image_count = 500
+basic_max_image_count = 100
+
+
+[redis]
+host = "localhost"
+port = 6380
+db = 0
+socket_timeout = 5.0
+socket_connect_timeout = 5.0
+max_connections = 20
+decode_responses = false
+
+
+[db]
+database = "pimfp"
+host = "localhost"
+port = 3306
+user = "liuzhen"
+charset = "utf8mb4"
+collation = "utf8mb4_0900_ai_ci"
+init_command = "SET SESSION time_zone='+00:00'"
+max_connections = 20
+stale_timeout = 300
+timeout = 10
+
+
+[smtp]
+host = "smtp.qq.com"
+port = 465
+user = "imf_prediction_cau@foxmail.com"
+from_addr = "imf_prediction_cau@foxmail.com"
+realname = "PIMFP"
+
+
+[logging]
+version = 1
+disable_existing_loggers = false
+
+[logging.formatters.standard]
+format = "%(asctime)s.%(msecs)03d [pid:%(process)d][%(name)s][%(filename)s:%(lineno)d][func:%(funcName)s][session_id:%(session_id)s][request_id:%(request_id)s][trace_id:%(trace_id)s][%(levelname)s][%(endpoint)s] %(message)s"
+datefmt = "%Y-%m-%d %H:%M:%S"
+
+[logging.filters.request_context_filter]
+"()" = "pimfp.logger.RequestContextFilter"
+
+[logging.handlers.null_handler]
+class = "logging.NullHandler"
+
+[logging.handlers.file_handler]
+class = "logging.handlers.WatchedFileHandler"
+filename = "/Workspace/liuzhen/pimfp/log/app.log"
+encoding = "UTF-8"
+level = "NOTSET"
+formatter = "standard"
+filters = ["request_context_filter"]
+
+# flask logger name is same as the app name
+# which "usually" is the __name__ of the app module
+# what an extremely stupid design!
+[logging.loggers.pimfp]
+handlers = ["file_handler"]
+level = "INFO"
+propagate = false
+
+[logging.loggers.werkzeug]
+handlers = ["file_handler"]
+level = "INFO"
+propagate = false
+
+[logging.loggers.peewee]
+handlers = ["file_handler"]
+level = "INFO"
+propagate = false
+
+[logging.loggers."peewee.sql"]
+handlers = ["file_handler"]
+level = "INFO"
+propagate = false
+
+[logging.loggers."peewee.pool"]
+handlers = ["file_handler"]
+level = "DEBUG"
+propagate = false

@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "register": {
+      "email_subject": "PIMFP Register"
+    },
+    "login": {
+      "email_subject": "PIMFP Login"
+    },
+    "reset": {
+      "email_subject": "PIMFP Reset Password"
+    }
+  },
+  "prediction": {
+    "reason": {
+      "INVALID_IMAGE_SIZE": "incorrect image size",
+      "ERROR_WHEN_OPENING": "unable to load image",
+      "ERROR_WHEN_PREPROCESSING": "image preprocessed error",
+      "ERROR_WHEN_INFERENCING": "image predicted error"
+    },
+    "result_email": {
+      "email_subject": "Model Prediction Result",
+      "result_filename": "prediction",
+      "avg_filename": "avg",
+      "prediction_type": {
+        "0": "Single view: backfat thickness",
+        "1": "Single view: loin eye area",
+        "2": "Multiple views: backfat thickness and loin eye area"
+      },
+      "ultrasound_type": {
+        "0": "Expro",
+        "1": "Unicorn Vet",
+		"2": "BOXERLY",
+		"3": "KAIXIN",
+		"4": "WELLD"
+      },
+      "pig_type": {
+        "0": "Lean",
+        "1": "Fat"
+      }
+    },
+    "fail_email": {
+      "email_subject": "Task Failure Notification"
+    }
+  }
+}

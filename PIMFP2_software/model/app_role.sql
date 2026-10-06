@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS pimfp.`app_role`
+(
+    `id`          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
+    `code`        VARCHAR(64)     NOT NULL UNIQUE COMMENT '角色代码 (如 VIP, ADMIN)',
+    `description` VARCHAR(255)             DEFAULT NULL COMMENT '角色描述说明',
+    `created_at`  DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at`  DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci COMMENT ='应用系统角色表';
